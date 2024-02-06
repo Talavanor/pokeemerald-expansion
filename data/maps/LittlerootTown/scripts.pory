@@ -77,17 +77,17 @@ LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent::
 	return
 
 LittlerootTown_EventScript_MoveMomToMaysDoor::
-	setobjectxyperm LOCALID_MOM, 14, 8
+	setobjectxyperm LOCALID_MOM, 22, 8
 	return
 
 LittlerootTown_EventScript_SetTwinPos::
 	goto_if_eq VAR_LITTLEROOT_TOWN_STATE, 0, LittlerootTown_EventScript_SetTwinGuardingRoutePos
-	setobjectxyperm LOCALID_TWIN, 10, 1
+	setobjectxyperm LOCALID_TWIN, 18, 1
 	setobjectmovementtype LOCALID_TWIN, MOVEMENT_TYPE_FACE_UP
 	return
 
 LittlerootTown_EventScript_SetTwinGuardingRoutePos::
-	setobjectxyperm LOCALID_TWIN, 7, 2
+	setobjectxyperm LOCALID_TWIN, 15, 2
 	setobjectmovementtype LOCALID_TWIN, MOVEMENT_TYPE_FACE_DOWN
 	return
 
@@ -100,11 +100,11 @@ LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos::
 	return
 
 LittlerootTown_EventScript_SetMomInFrontOfDoorMale::
-	setobjectxyperm LOCALID_MOM, 5, 9
+	setobjectxyperm LOCALID_MOM, 13, 9
 	return
 
 LittlerootTown_EventScript_SetMomInFrontOfDoorFemale::
-	setobjectxyperm LOCALID_MOM, 14, 9
+	setobjectxyperm LOCALID_MOM, 22, 9
 	return
 
 LittlerootTown_OnFrame:
@@ -1025,6 +1025,14 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 
 script LittlerootTown_EventScript_TestSign {
     lockall
-    msgbox("Hello Rai!")
+    msgbox(format("Community Berry Garden: Take a berry, plant a berry!"))
     releaseall
 }
+
+
+script LittlerootTown_EventScript_Observing {
+	lockall
+	msgbox(format("Oh you're {PLAYER}, right? Welcome to Littleroot.\p My Zigzagoon and I are observing the bahavior of the Pokémon in this clearing.\p You'll have to wait until I've finished making my notes if you want to go exploring."), MSGBOX_NPC)
+	releaseall
+}
+

@@ -140,6 +140,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_AgreeToSeeRival::
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_GetRivalToTeachYou, MSGBOX_DEFAULT
 	clearflag FLAG_HIDE_ROUTE_101_BOY
 	setvar VAR_BIRCH_LAB_STATE, 3
+	call GiveStarterKit
 	releaseall
 	end
 
@@ -1004,29 +1005,39 @@ LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall:
 `
 
 # Gives the player a partner pokemon for their duos team
-script LittlerootTown_ProfessorBirchsLab_EventScript_GivePartnerPokemon {
+script LittlerootTown_ProfessorBirchsLab_EventScript_OfferPartner_01 {
 	lockall
+	showmonpic(SPECIES_RALTS, 10, 3, TRUE)
+	
+	if(!flag(FLAG_RESCUED_BIRCH)) {
+		msgbox(format("Ralts. The Psychic Feeling Pokémon"))
+		hidemonpic
+		releaseall
+		end
+	}
+
 	setflag(FLAG_Z_FORCE_SHINY_ENABLED)
-	showmonpic(SPECIES_BULBASAUR, 10, 3)
-	msgbox("Do you want to choose Bulbasaur \n as your support partner?", MSGBOX_YESNO)
+	msgbox(format("Do you want to choose Ralts as your support partner?"), MSGBOX_YESNO)
 	if(var(VAR_RESULT) == YES) {
-		givemon(SPECIES_BULBASAUR, 5, ITEM_GRASSY_SEED)
+		givemon(SPECIES_RALTS, 5, ITEM_LIGHT_CLAY)
 		if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
 			playfanfare(MUS_OBTAIN_ITEM)
-			msgbox("Received Bulbasaur!")
+			msgbox("Received Ralts!")
 			call(RemovePartnerOptions)
 			setflag(FLAG_Z_SUPPORT_PARTNER_CHOSEN)
 			call(NicknamePartyMon)
+			call(GiveStarterKit)
 		}
 		elif(var(VAR_RESULT) == MON_GIVEN_TO_PC) {
 			playfanfare(MUS_OBTAIN_ITEM)
-			msgbox("Received Bulbasaur!")
+			msgbox("Received Ralts!")
 			call(RemovePartnerOptions)
 			setflag(FLAG_Z_SUPPORT_PARTNER_CHOSEN)
 			call(NicknameBoxMon)
+			call(GiveStarterKit)
 		}
 		else {
-			msgbox("No space for Bulbasaur")
+			msgbox("No space for Ralts")
 		}
 	}
 	else {
@@ -1039,6 +1050,95 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_GivePartnerPokemon {
 	end
 }
 
+script LittlerootTown_ProfessorBirchsLab_EventScript_OfferPartner_02 {
+	lockall
+	showmonpic(SPECIES_TOGEPI, 10, 3, TRUE)
+
+	if(!flag(FLAG_RESCUED_BIRCH)) {
+		msgbox(format("Togepi. The Spike Ball Pokémon"))
+		releaseall
+		hidemonpic
+		end
+	}
+
+	setflag(FLAG_Z_FORCE_SHINY_ENABLED)
+	msgbox(format("Do you want to choose Togepi as your support partner?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == YES) {
+		givemon(SPECIES_TOGEPI, 5, ITEM_LEFTOVERS)
+		if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
+			playfanfare(MUS_OBTAIN_ITEM)
+			msgbox("Received Togepi!")
+			call(RemovePartnerOptions)
+			setflag(FLAG_Z_SUPPORT_PARTNER_CHOSEN)
+			call(NicknamePartyMon)
+			call(GiveStarterKit)
+		}
+		elif(var(VAR_RESULT) == MON_GIVEN_TO_PC) {
+			playfanfare(MUS_OBTAIN_ITEM)
+			msgbox("Received Togepi!")
+			call(RemovePartnerOptions)
+			setflag(FLAG_Z_SUPPORT_PARTNER_CHOSEN)
+			call(NicknameBoxMon)
+			call(GiveStarterKit)
+		}
+		else {
+			msgbox("No space for Togepi")
+		}
+	}
+	else {
+		msgbox(ProfessorNotChosen, MSGBOX_NPC)
+	}
+	hidemonpic
+	waitmessage
+	releaseall
+	clearflag(FLAG_Z_FORCE_SHINY_ENABLED)
+	end
+}
+
+script LittlerootTown_ProfessorBirchsLab_EventScript_OfferPartner_03 {
+	lockall
+	showmonpic(SPECIES_MAREEP, 10, 3, TRUE)
+
+	if(!flag(FLAG_RESCUED_BIRCH)) {
+		msgbox(format("Mareep. The Electric Wool Pokémon"))
+		hidemonpic
+		releaseall
+		end
+	}
+
+	setflag(FLAG_Z_FORCE_SHINY_ENABLED)
+	msgbox("Do you want to choose Mareep \n as your support partner?", MSGBOX_YESNO)
+	if(var(VAR_RESULT) == YES) {
+		givemon(SPECIES_MAREEP, 5, ITEM_GRASSY_SEED)
+		if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
+			playfanfare(MUS_OBTAIN_ITEM)
+			msgbox("Received Mareep!")
+			call(RemovePartnerOptions)
+			setflag(FLAG_Z_SUPPORT_PARTNER_CHOSEN)
+			call(NicknamePartyMon)
+			call(GiveStarterKit)
+		}
+		elif(var(VAR_RESULT) == MON_GIVEN_TO_PC) {
+			playfanfare(MUS_OBTAIN_ITEM)
+			msgbox("Received Mareep!")
+			call(RemovePartnerOptions)
+			setflag(FLAG_Z_SUPPORT_PARTNER_CHOSEN)
+			call(NicknameBoxMon)
+			call(GiveStarterKit)
+		}
+		else {
+			msgbox("No space for Mareep")
+		}
+	}
+	else {
+		msgbox(ProfessorNotChosen, MSGBOX_NPC)
+	}
+	hidemonpic
+	waitmessage
+	releaseall
+	clearflag(FLAG_Z_FORCE_SHINY_ENABLED)
+	end
+}
 
 script NicknamePartyMon {
 	msgbox("Give it a nickname?", MSGBOX_YESNO)
@@ -1049,7 +1149,6 @@ script NicknamePartyMon {
 	}
 }
 
-
 script NicknameBoxMon {
 	msgbox("Give it a nickname?", MSGBOX_YESNO)
 	hidemonpic
@@ -1059,7 +1158,6 @@ script NicknameBoxMon {
 	call(Common_EventScript_TransferredToPC)
 }
 
-
 # These values must match the pokeballs item ids
 script RemovePartnerOptions {
 	removeobject(7)
@@ -1067,7 +1165,41 @@ script RemovePartnerOptions {
 	removeobject(9)
 }
 
+script GiveStarterKit {
+	call(GetStarterPokeballs)
+}
+
+text StarterKitMsg {
+	format("And here's some items to help you on your way. Remember {PLAYER}, a healthy pokemon is a happy one - and with a happy pokemon by your side there's no telling how far you can go.")
+}
 
 text ProfessorNotChosen {
-	format("Feel free to take your time. It's an important decision.")
+	format("Take your time. It's an important decision.")
+}
+
+
+text GoGetStarterKitMsg {
+	format("There's some items to help you on your way. On that table over there. Remember {PLAYER}, a healthy pokemon is a happy one - and with a happy pokemon by your side there's no telling how far you can go.")
+}
+
+script LittlerootTown_ProfessorBirchsLab_EventScript_GetPotions {
+	lockall
+	giveitem(ITEM_POTION, 3)
+	msgbox(format(
+		"Remember {PLAYER}, a healthy pokemon is a happy one - \p"
+		"and with a happy pokemon by your side there's no telling how far you can go."
+	), MSGBOX_NPC)
+	releaseall
+}
+
+
+script GetStarterPokeballs {
+	lockall
+	msgbox(format("Your father is a Gym leader so you know that being a trainer means building a team and forging strong bonds with them. \p"
+		"Here, take these. I imagine you know how to use them."), MSGBOX_NPC)
+	giveitem(ITEM_POKE_BALL, 5)
+	msgbox(format(
+		"There's a forest clearing to the EAST OF TOWN that has a wonderfully diverse ecosystem. It's part of the reason why I decided to set up my lab here in Littleroot. \p"
+		"You should take your new Pokémon there and explore for a while before you head out to find {RIVAL}"), MSGBOX_NPC)
+	releaseall
 }

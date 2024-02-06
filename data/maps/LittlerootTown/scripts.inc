@@ -157,7 +157,7 @@ LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent::
 # 79 "data/maps/LittlerootTown/scripts.pory"
 LittlerootTown_EventScript_MoveMomToMaysDoor::
 # 80 "data/maps/LittlerootTown/scripts.pory"
-	setobjectxyperm LOCALID_MOM, 14, 8
+	setobjectxyperm LOCALID_MOM, 22, 8
 # 81 "data/maps/LittlerootTown/scripts.pory"
 	return
 # 82 "data/maps/LittlerootTown/scripts.pory"
@@ -167,7 +167,7 @@ LittlerootTown_EventScript_SetTwinPos::
 # 84 "data/maps/LittlerootTown/scripts.pory"
 	goto_if_eq VAR_LITTLEROOT_TOWN_STATE, 0, LittlerootTown_EventScript_SetTwinGuardingRoutePos
 # 85 "data/maps/LittlerootTown/scripts.pory"
-	setobjectxyperm LOCALID_TWIN, 10, 1
+	setobjectxyperm LOCALID_TWIN, 18, 1
 # 86 "data/maps/LittlerootTown/scripts.pory"
 	setobjectmovementtype LOCALID_TWIN, MOVEMENT_TYPE_FACE_UP
 # 87 "data/maps/LittlerootTown/scripts.pory"
@@ -177,7 +177,7 @@ LittlerootTown_EventScript_SetTwinPos::
 # 89 "data/maps/LittlerootTown/scripts.pory"
 LittlerootTown_EventScript_SetTwinGuardingRoutePos::
 # 90 "data/maps/LittlerootTown/scripts.pory"
-	setobjectxyperm LOCALID_TWIN, 7, 2
+	setobjectxyperm LOCALID_TWIN, 15, 2
 # 91 "data/maps/LittlerootTown/scripts.pory"
 	setobjectmovementtype LOCALID_TWIN, MOVEMENT_TYPE_FACE_DOWN
 # 92 "data/maps/LittlerootTown/scripts.pory"
@@ -203,7 +203,7 @@ LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos::
 # 102 "data/maps/LittlerootTown/scripts.pory"
 LittlerootTown_EventScript_SetMomInFrontOfDoorMale::
 # 103 "data/maps/LittlerootTown/scripts.pory"
-	setobjectxyperm LOCALID_MOM, 5, 9
+	setobjectxyperm LOCALID_MOM, 13, 9
 # 104 "data/maps/LittlerootTown/scripts.pory"
 	return
 # 105 "data/maps/LittlerootTown/scripts.pory"
@@ -211,7 +211,7 @@ LittlerootTown_EventScript_SetMomInFrontOfDoorMale::
 # 106 "data/maps/LittlerootTown/scripts.pory"
 LittlerootTown_EventScript_SetMomInFrontOfDoorFemale::
 # 107 "data/maps/LittlerootTown/scripts.pory"
-	setobjectxyperm LOCALID_MOM, 14, 9
+	setobjectxyperm LOCALID_MOM, 22, 9
 # 108 "data/maps/LittlerootTown/scripts.pory"
 	return
 # 109 "data/maps/LittlerootTown/scripts.pory"
@@ -2051,6 +2051,25 @@ LittlerootTown_EventScript_TestSign::
 	return
 
 
+LittlerootTown_EventScript_Observing::
+# 1034 "data/maps/LittlerootTown/scripts.pory"
+	lockall
+# 1035 "data/maps/LittlerootTown/scripts.pory"
+	msgbox LittlerootTown_EventScript_Observing_Text_0, MSGBOX_NPC
+	return
+
+
 LittlerootTown_EventScript_TestSign_Text_0:
 # 1028 "data/maps/LittlerootTown/scripts.pory"
-	.string "Hello Rai!$"
+	.string "Community Berry Garden: Take a berry,\n"
+	.string "plant a berry!$"
+
+LittlerootTown_EventScript_Observing_Text_0:
+# 1036 "data/maps/LittlerootTown/scripts.pory"
+	.string "Oh you're {PLAYER}, right? Welcome to\n"
+	.string "Littleroot.\p"
+	.string "My Zigzagoon and I are observing the\n"
+	.string "bahavior of the Pokémon in this\l"
+	.string "clearing. You'll have to wait until I've\l"
+	.string "finished making my notes if you want to\l"
+	.string "go exploring.$"

@@ -45,8 +45,8 @@
 #define FLAG_Z_SUPPORT_PARTNER_CHOSEN    0x20 // Unused Flag
 #define FLAG_Z_FORCE_SHINY_ENABLED       0x21 // Unused Flag
 #define FLAG_Z_ENABLE_SMART_WILD_MONS    0x22 // Unused Flag
-#define FLAG_Z_EXP_SHARE_ENABLED           0x23 // Unused Flag
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
+#define FLAG_Z_EXP_SHARE_ENABLED         0x23 // Unused Flag
+#define FLAG_Z_TYPE_EXP_SHARE_ONLY       0x24 // Unused Flag
 #define FLAG_UNUSED_0x025    0x25 // Unused Flag
 #define FLAG_UNUSED_0x026    0x26 // Unused Flag
 #define FLAG_UNUSED_0x027    0x27 // Unused Flag

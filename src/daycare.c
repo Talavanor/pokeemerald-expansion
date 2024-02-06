@@ -317,12 +317,50 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
         species = newSpecies;
     }
 
+    // Old approach removed when adding scaled XP
+    // if (GetMonData(&pokemon, MON_DATA_LEVEL) != MAX_LEVEL)
+    // {
+    //     experience = GetMonData(&pokemon, MON_DATA_EXP) + daycareMon->steps;
+    //     SetMonData(&pokemon, MON_DATA_EXP, &experience);
+    //     ApplyDaycareExperience(&pokemon);
+    // }
+
+    // The new approached added when implementing scaled XP
     if (GetMonData(&pokemon, MON_DATA_LEVEL) != MAX_LEVEL)
     {
+        u8 level;
+        u8 i;
+        u8 cap;
+
         experience = GetMonData(&pokemon, MON_DATA_EXP) + daycareMon->steps;
         SetMonData(&pokemon, MON_DATA_EXP, &experience);
+        level = GetLevelFromMonExp(&pokemon);
+
+        for (i = 0; i < NUM_SOFT_CAPS; i++)
+        {
+            if (i <= 2)
+                cap = sLevelCaps[i] / 2;
+            else
+                cap = sLevelCaps[i];
+
+            if (!FlagGet(sLevelCapFlags[i]) && level >= cap)
+            {
+                u8 levelDiff;
+                u32 newSteps;
+
+                levelDiff = level - cap;
+
+                newSteps = daycareMon->steps / (levelDiff + 1);
+                experience = GetBoxMonData(&daycareMon->mon, MON_DATA_EXP) + newSteps;
+
+                SetMonData(&pokemon, MON_DATA_EXP, &experience);
+                break;
+            }
+        }
+
         ApplyDaycareExperience(&pokemon);
     }
+
 
     gPlayerParty[PARTY_SIZE - 1] = pokemon;
     if (daycareMon->mail.message.itemId)
@@ -350,12 +388,52 @@ u16 TakePokemonFromDaycare(void)
     return TakeSelectedPokemonMonFromDaycareShiftSlots(&gSaveBlock1Ptr->daycare, gSpecialVar_0x8004);
 }
 
+// Old implementation replaced when implementing the level-cap mod
+// static u8 GetLevelAfterDaycareSteps(struct BoxPokemon *mon, u32 steps)
+// {
+//     struct BoxPokemon tempMon = *mon;
+
+//     u32 experience = GetBoxMonData(mon, MON_DATA_EXP) + steps;
+//     SetBoxMonData(&tempMon, MON_DATA_EXP,  &experience);
+//     return GetLevelFromBoxMonExp(&tempMon);
+// }
+
+// New implementation for soft-capped xp
 static u8 GetLevelAfterDaycareSteps(struct BoxPokemon *mon, u32 steps)
 {
     struct BoxPokemon tempMon = *mon;
-
     u32 experience = GetBoxMonData(mon, MON_DATA_EXP) + steps;
-    SetBoxMonData(&tempMon, MON_DATA_EXP,  &experience);
+    u8 i;
+    u8 level;
+    u8 cap;
+
+    // set experience now to be able to get levelAfter
+    SetBoxMonData(&tempMon, MON_DATA_EXP, &experience);
+    level = GetLevelFromBoxMonExp(&tempMon);
+
+    // loop through to check caps
+    for (i = 0; i < NUM_SOFT_CAPS; i++)
+    {
+        if (i <= 2)
+            cap = sLevelCaps[i] / 2;
+        else
+            cap = sLevelCaps[i];
+
+        if (!FlagGet(sLevelCapFlags[i]) && level >= cap)
+        {
+            u8 levelDiff;
+            u32 newSteps;
+
+            levelDiff = level - cap;
+
+            newSteps = steps / (levelDiff + 1);
+            experience = GetBoxMonData(mon, MON_DATA_EXP) + newSteps;
+
+            SetBoxMonData(&tempMon, MON_DATA_EXP, &experience);
+            break;
+        }
+    }
+
     return GetLevelFromBoxMonExp(&tempMon);
 }
 

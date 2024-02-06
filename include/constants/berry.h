@@ -127,6 +127,14 @@
 
 // Remainder are unused
 
+// Custom berry trees for modded Littleroot
+#define BERRY_TREE_Z_LITTLEROOT_ORAN    90
+#define BERRY_TREE_Z_LITTLEROOT_CHERI   91
+#define BERRY_TREE_Z_LITTLEROOT_CHESTO  92
+#define BERRY_TREE_Z_LITTLEROOT_RAWST   94
+#define BERRY_TREE_Z_LITTLEROOT_PECHA   95
+#define BERRY_TREE_Z_LITTLEROOT_RAZZ    96
+
 #define BERRY_TREES_COUNT 128
 
 #endif // GUARD_CONSTANTS_BERRY_H
