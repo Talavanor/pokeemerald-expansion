@@ -619,7 +619,8 @@ const u16 sLevelCapFlags[NUM_SOFT_CAPS] =
     FLAG_BADGE05_GET, FLAG_BADGE06_GET, FLAG_BADGE07_GET, FLAG_BADGE08_GET,
 };
 
-// Current approach is to soft-cap the closer you are to
+// Current approach is to soft-cap the closer you are to 5 levels under the next "can control up to Xlv"
+// cap for the next gym badge.
 const u16 sLevelCaps[NUM_SOFT_CAPS] = { 15, 25, 35, 45, 55, 65, 75, 95 };
 const double sLevelCapReduction[7] = { .5, .33, .25, .20, .15, .10, .05 };
 const double sRelativePartyScaling[27] =
@@ -4154,6 +4155,51 @@ double GetPkmnExpMultiplier(u8 level)
 }
 // END -> Methods for xp-cap mechanic
 
+// START -> Methods for exp-type-share
+// Is this the body of a function??
+bool32 DoesMonShareType(u8 expGetterMonId)
+{
+	int i;
+	u16 getterSpecies;
+	getterSpecies = GetMonData(&gPlayerParty[expGetterMonId], MON_DATA_SPECIES, NULL);
+	
+	u8 matchTypes[4], getterTypeOne, getterTypeTwo;
+	
+	// use the receiving mon's species to get their types and store them
+    getterTypeOne = gSpeciesInfo[getterSpecies].types[0];
+    getterTypeTwo = gSpeciesInfo[getterSpecies].types[1];
+
+    // Set up an array of the types of all friendly mons on the field to check against
+    matchTypes[0] = gBattleMons[B_POSITION_PLAYER_LEFT].type1;
+    matchTypes[1] = gBattleMons[B_POSITION_PLAYER_LEFT].type2;
+    if(WILD_DOUBLE_BATTLE || BATTLE_TYPE_DOUBLE)
+    {
+        matchTypes[2] = gBattleMons[B_POSITION_PLAYER_RIGHT].type1;
+        matchTypes[3] = gBattleMons[B_POSITION_PLAYER_RIGHT].type2;
+    }
+    else
+    {
+        matchTypes[2] = TYPE_NONE;
+        matchTypes[3] = TYPE_NONE;
+    }
+
+    // Loop through each of our four stored types
+    for (i = 0; i < 4; i++)
+    {
+        // Skip matching if current match type is TYPE_NONE
+        if(matchTypes[i] == TYPE_NONE)
+            continue;
+        // Then check to see if either of our getter's types match, and return TRUE if they do
+        // This mon should receive type-shared XP
+        if(getterTypeOne == matchTypes[i] || getterTypeTwo == matchTypes[i])
+            return TRUE;
+    }
+	// If we get this far we haven't found a match so the mon isn't valid for type-share XP
+	return FALSE;
+}
+
+// START -> Methods for exp-type-share
+
 static void Cmd_getexp(void)
 {
     CMD_ARGS(u8 battler);
@@ -4163,7 +4209,11 @@ static void Cmd_getexp(void)
     u8 *expMonId = &gBattleStruct->expGetterMonId;
 
     gBattlerFainted = GetBattlerForBattleScript(cmd->battler);
-
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "Z: Left player-mon type 1 %S", gTypeNames[gBattleMons[B_POSITION_PLAYER_LEFT].type1]);
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "Z: Left player-mon type 2 %S", gTypeNames[gBattleMons[B_POSITION_PLAYER_LEFT].type2]);
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "Z: Right player-mon type 1 %S", gTypeNames[gBattleMons[B_POSITION_PLAYER_RIGHT].type1]);
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "Z: Right player-mon type 2 %S", gTypeNames[gBattleMons[B_POSITION_PLAYER_RIGHT].type2]);
+    // ??: expState seems to be the STEP in the process to assign xp
     switch (gBattleScripting.getexpState)
     {
     case 0: // check if should receive exp at all
@@ -4175,7 +4225,7 @@ static void Cmd_getexp(void)
         }
         else
         {
-            gBattleScripting.getexpState++;
+            gBattleScripting.getexpState++; // ??: Advance to next state
             gBattleStruct->givenExpMons |= gBitTable[gBattlerPartyIndexes[gBattlerFainted]];
         }
         break;
@@ -15857,8 +15907,23 @@ u8 GetFirstFaintedPartyIndex(u8 battler)
 
 void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBattler)
 {
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "Applying experience modifiers...");  // Z testing
+    // DebugPrintfLevel(MGBA_LOG_DEBUG, "ExpGetterMon ID: %s", expGetterMonId); // Z testing
+    
+    u16 currSpecies;
+    currSpecies = GetMonData(&gPlayerParty[expGetterMonId], MON_DATA_SPECIES, NULL);
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "ExpGetterMon Species: %S", GetSpeciesName(currSpecies)); // Z testing
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "Z: Getter-mon type 1 %S", gTypeNames[gSpeciesInfo[currSpecies].types[0]]);
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "Z: Getter-mon type 2 %S", gTypeNames[gSpeciesInfo[currSpecies].types[1]]);
+
+    if(DoesMonShareType(expGetterMonId))
+        DebugPrintfLevel(MGBA_LOG_DEBUG, "TRUE: Mon shares type!");
+    else
+        DebugPrintfLevel(MGBA_LOG_DEBUG, "FALSE: Mon does not share type...");
+
     u32 holdEffect = GetMonHoldEffect(&gPlayerParty[expGetterMonId]);
     double expMultiplier = GetPkmnExpMultiplier(gPlayerParty[gBattleStruct->expGetterMonId].level); // + For Capped XP mechanic
+
 
     if (IsTradedMon(&gPlayerParty[expGetterMonId]))
         *expAmount = ((*expAmount * 150) / 100) * expMultiplier; // + For Capped XP mechanic
@@ -15883,6 +15948,7 @@ void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBat
         value /= sExperienceScalingFactors[faintedLevel + expGetterLevel + 10];
         *expAmount = (value + 1) * expMultiplier; // + For Capped XP mechanic
     }
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "gained EXP ammount is %d", *expAmount); // Z testing
 }
 
 void BS_ItemRestoreHP(void)
