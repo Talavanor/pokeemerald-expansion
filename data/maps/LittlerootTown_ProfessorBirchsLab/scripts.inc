@@ -2417,11 +2417,13 @@ GetStarterPokeballs_Text_2:
 
 GetStarterPokeballs_Text_3:
 # 1207 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	.string "That item should help you if you want to\n"
-	.string "become a trainer that specializes in a\l"
-	.string "specific type of Pokémon.\p"
+	.string "That item should help you out quite a\n"
+	.string "bit if you plan to become a trainer that\l"
+	.string "specializes in a specific Pokémon type.\p"
 	.string "It allows Pokémon of a shared type to\n"
-	.string "grow$"
+	.string "grow and learn from each other as you\l"
+	.string "battle trainers and wild Pokémon during\l"
+	.string "your journey.$"
 
 StarterKitMsg::
 # 1172 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
