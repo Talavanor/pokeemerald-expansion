@@ -2056,6 +2056,18 @@ LittlerootTown_EventScript_Observing::
 	lockall
 # 1035 "data/maps/LittlerootTown/scripts.pory"
 	msgbox LittlerootTown_EventScript_Observing_Text_0, MSGBOX_NPC
+# 1036 "data/maps/LittlerootTown/scripts.pory"
+	releaseall
+	return
+
+
+LittlerootTown_EventScript_ObservingBag::
+# 1040 "data/maps/LittlerootTown/scripts.pory"
+	lockall
+# 1041 "data/maps/LittlerootTown/scripts.pory"
+	msgbox LittlerootTown_EventScript_ObservingBag_Text_0
+# 1042 "data/maps/LittlerootTown/scripts.pory"
+	releaseall
 	return
 
 
@@ -2065,11 +2077,17 @@ LittlerootTown_EventScript_TestSign_Text_0:
 	.string "plant a berry!$"
 
 LittlerootTown_EventScript_Observing_Text_0:
-# 1036 "data/maps/LittlerootTown/scripts.pory"
+# 1035 "data/maps/LittlerootTown/scripts.pory"
 	.string "Oh you're {PLAYER}, right? Welcome to\n"
 	.string "Littleroot.\p"
 	.string "My Zigzagoon and I are observing the\n"
 	.string "bahavior of the Pokémon in this\l"
-	.string "clearing. You'll have to wait until I've\l"
-	.string "finished making my notes if you want to\l"
-	.string "go exploring.$"
+	.string "clearing.\p"
+	.string "You'll have to wait until I've finished\n"
+	.string "making my notes if you want to go\l"
+	.string "exploring.$"
+
+LittlerootTown_EventScript_ObservingBag_Text_0:
+# 1041 "data/maps/LittlerootTown/scripts.pory"
+	.string "It's a bag filled with the researcher's\n"
+	.string "field equipment. Better leave it alone.$"

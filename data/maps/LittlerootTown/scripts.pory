@@ -1036,3 +1036,9 @@ script LittlerootTown_EventScript_Observing {
 	releaseall
 }
 
+script LittlerootTown_EventScript_ObservingBag {
+	lockall
+	msgbox(format("It's a bag filled with the researcher's field equipment. Better leave it alone."))
+	releaseall
+}
+

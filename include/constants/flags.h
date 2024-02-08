@@ -47,7 +47,7 @@
 #define FLAG_Z_ENABLE_SMART_WILD_MONS    0x22 // Unused Flag
 #define FLAG_Z_EXP_SHARE_ENABLED         0x23 // Unused Flag
 #define FLAG_Z_TYPE_EXP_SHARE_ONLY       0x24 // Unused Flag
-#define FLAG_UNUSED_0x025    0x25 // Unused Flag
+#define FLAG_Z_NO_BATTLE_BAG             0x25 // Unused Flag
 #define FLAG_UNUSED_0x026    0x26 // Unused Flag
 #define FLAG_UNUSED_0x027    0x27 // Unused Flag
 #define FLAG_UNUSED_0x028    0x28 // Unused Flag
