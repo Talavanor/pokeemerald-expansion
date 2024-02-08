@@ -100,12 +100,12 @@
               {
                 "min_level": 3,
                 "max_level": 3,
-                "species": "SPECIES_WURMPLE"
+                "species": "SPECIES_DWEBBLE"
               },
               {
                 "min_level": 3,
                 "max_level": 3,
-                "species": "SPECIES_POOCHYENA"
+                "species": "SPECIES_BUNEARY"
               },
               {
                 "min_level": 3,
@@ -125,7 +125,7 @@
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_ZIGZAGOON"
+                "species": "SPECIES_MAREEP"
               },
               {
                 "min_level": 2,
@@ -140,7 +140,7 @@
               {
                 "min_level": 3,
                 "max_level": 3,
-                "species": "SPECIES_ZIGZAGOON"
+                "species": "SPECIES_TOGEPI"
               }
             ]
           }
@@ -323,7 +323,7 @@
               {
                 "min_level": 4,
                 "max_level": 4,
-                "species": "SPECIES_POOCHYENA"
+                "species": "SPECIES_TOXEL"
               },
               {
                 "min_level": 2,
@@ -343,12 +343,12 @@
               {
                 "min_level": 4,
                 "max_level": 4,
-                "species": "SPECIES_ZIGZAGOON"
+                "species": "SPECIES_DEERLING"
               },
               {
                 "min_level": 3,
                 "max_level": 3,
-                "species": "SPECIES_WINGULL"
+                "species": "SPECIES_TOGEPI"
               },
               {
                 "min_level": 3,
@@ -11511,12 +11511,12 @@
               {
                 "min_level": 2,
                 "max_level": 5,
-                "species": "SPECIES_HOPPIP"
+                "species": "SPECIES_SKIDDO"
               },
               {
                 "min_level": 2,
                 "max_level": 5,
-                "species": "SPECIES_RATTATA"
+                "species": "SPECIES_WOOLOO"
               },
               {
                 "min_level": 3,
@@ -11526,17 +11526,17 @@
               {
                 "min_level": 3,
                 "max_level": 5,
-                "species": "SPECIES_HOPPIP"
+                "species": "SPECIES_MAREEP"
               },
               {
                 "min_level": 3,
                 "max_level": 5,
-                "species": "SPECIES_COTTONEE"
+                "species": "SPECIES_SKIDDO"
               },
               {
                 "min_level": 4,
                 "max_level": 5,
-                "species": "SPECIES_NINCADA"
+                "species": "SPECIES_EEVEE"
               },
               {
                 "min_level": 4,

@@ -615,8 +615,8 @@ BattleFrontier_OutsideWest_Text_QuestionMarkUnderConstruction:
 
 BattleFrontier_BattleDomeLobby_Text_WinnersGainReputation:
 	.string "When a TRAINER chains tournament\n"
-	.string "wins at the BATTLE DOME, he or she\l"
-	.string "gains a reputation as a star.\p"
+	.string "wins at the BATTLE DOME, they\l"
+	.string "gain a reputation as a star.\p"
 	.string "Tough TRAINERS are drawn by that\n"
 	.string "reputation to the BATTLE DOME.\p"
 	.string "A true superstar is a TRAINER who\n"

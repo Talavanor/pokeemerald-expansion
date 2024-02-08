@@ -2164,7 +2164,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .description = COMPOUND_STRING(
             "Its scent is so overpowering that,\n"
             "unless a Trainer happens to really enjoy\n"
-            "the smell, he or she will have a hard time\n"
+            "the smell, they'll will have a hard time\n"
             "walking alongside it."),
         .pokemonScale = 366,
         .pokemonOffset = 7,

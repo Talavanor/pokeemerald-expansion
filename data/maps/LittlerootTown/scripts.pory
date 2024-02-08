@@ -1032,7 +1032,7 @@ script LittlerootTown_EventScript_TestSign {
 
 script LittlerootTown_EventScript_Observing {
 	lockall
-	msgbox(format("Oh you're {PLAYER}, right? Welcome to Littleroot.\p My Zigzagoon and I are observing the bahavior of the Pokémon in this clearing.\p You'll have to wait until I've finished making my notes if you want to go exploring."), MSGBOX_NPC)
+	msgbox(format("Oh you're {PLAYER}, right? Welcome to Littleroot.\p I'm currently observing the bahavior of the Pokémon in this clearing.\p You'll have to wait until I've finished making my notes if you want to go exploring."), MSGBOX_NPC)
 	releaseall
 }
 

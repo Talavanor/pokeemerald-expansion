@@ -1919,7 +1919,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Artist = {
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanNormal = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_BRENDAN,
+    .paletteTag = OBJ_EVENT_PAL_TAG_RS_BRENDAN,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION,
     .size = 256,
     .width = 16,
@@ -1932,13 +1932,13 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanNormal
     .oam = &gObjectEventBaseOam_16x32,
     .subspriteTables = sOamTables_16x32,
     .anims = sAnimTable_BrendanMayNormal,
-    .images = sPicTable_BrendanNormal,
+    .images = sPicTable_RubySapphireBrendan,
     .affineAnims = gDummySpriteAffineAnimTable,
 };
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanMachBike = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_BRENDAN,
+    .paletteTag = OBJ_EVENT_PAL_TAG_RS_BRENDAN,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION,
     .size = 512,
     .width = 32,
@@ -1957,7 +1957,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanMachBi
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanAcroBike = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_BRENDAN,
+    .paletteTag = OBJ_EVENT_PAL_TAG_RS_BRENDAN,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION,
     .size = 512,
     .width = 32,
@@ -1976,7 +1976,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanAcroBi
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanSurfing = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_BRENDAN,
+    .paletteTag = OBJ_EVENT_PAL_TAG_RS_BRENDAN,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
     .size = 512,
     .width = 32,
@@ -1995,7 +1995,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanSurfin
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanFieldMove = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_BRENDAN,
+    .paletteTag = OBJ_EVENT_PAL_TAG_RS_BRENDAN,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION,
     .size = 512,
     .width = 32,
@@ -2014,7 +2014,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanFieldM
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayNormal = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_MAY,
+    .paletteTag = OBJ_EVENT_PAL_TAG_RS_MAY,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION,
     .size = 256,
     .width = 16,
@@ -2027,13 +2027,13 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayNormal = {
     .oam = &gObjectEventBaseOam_16x32,
     .subspriteTables = sOamTables_16x32,
     .anims = sAnimTable_BrendanMayNormal,
-    .images = sPicTable_MayNormal,
+    .images = sPicTable_RubySapphireMay,
     .affineAnims = gDummySpriteAffineAnimTable,
 };
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayMachBike = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_MAY,
+    .paletteTag = OBJ_EVENT_PAL_TAG_RS_MAY,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION,
     .size = 512,
     .width = 32,
@@ -2052,7 +2052,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayMachBike =
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayAcroBike = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_MAY,
+    .paletteTag = OBJ_EVENT_PAL_TAG_RS_MAY,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION,
     .size = 512,
     .width = 32,
@@ -2071,7 +2071,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayAcroBike =
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMaySurfing = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_MAY,
+    .paletteTag = OBJ_EVENT_PAL_TAG_RS_MAY,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
     .size = 512,
     .width = 32,
@@ -2090,7 +2090,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMaySurfing = 
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayFieldMove = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_MAY,
+    .paletteTag = OBJ_EVENT_PAL_TAG_RS_MAY,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION,
     .size = 512,
     .width = 32,

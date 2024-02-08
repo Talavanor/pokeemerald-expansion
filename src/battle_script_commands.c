@@ -15909,6 +15909,7 @@ u8 GetFirstFaintedPartyIndex(u8 battler)
     return PARTY_SIZE;
 }
 
+
 void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBattler)
 {
     DebugPrintfLevel(MGBA_LOG_WARN, "Applying experience modifiers...");  // Z testing

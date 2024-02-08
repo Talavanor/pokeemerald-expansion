@@ -326,7 +326,7 @@ RivalsHouse_1F_Text_OhYoureTheNewNeighbor:
 	.string "… … … … … … … … …\p"
 	.string "Oh, you're {PLAYER}{KUN}, our new next-door\n"
 	.string "neighbor! Hi!\p"
-	.string "We have a kid about the same\n"
+	.string "Our {RIVAL} is about the same\n"
 	.string "age as you.\p"
 	.string "They've been excited about making\n"
 	.string "a new friend.\p"
