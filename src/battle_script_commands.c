@@ -621,17 +621,27 @@ const u16 sLevelCapFlags[NUM_SOFT_CAPS] =
 
 // Current approach is to soft-cap the closer you are to 5 levels under the next "can control up to Xlv"
 // cap for the next gym badge.
-const u16 sLevelCaps[NUM_SOFT_CAPS] = { 15, 25, 35, 45, 55, 65, 75, 95 };
+const u16 sLevelCaps[NUM_SOFT_CAPS] = { 15, 20, 25, 30, 35, 40, 45, 50 };
 const double sLevelCapReduction[7] = { .5, .33, .25, .20, .15, .10, .05 };
 const double sRelativePartyScaling[27] =
 {
-    3.00, 2.75, 2.50, 2.33, 2.25,
-    2.00, 1.80, 1.70, 1.60, 1.50,
-    1.40, 1.30, 1.20, 1.10, 1.00,
-    0.90, 0.80, 0.75, 0.66, 0.50,
-    0.40, 0.33, 0.25, 0.20, 0.15,
-    0.10, 0.05,
+    4.00, 3.75, 3.50, 3.33, 3.25,
+    3.00, 2.80, 2.70, 2.60, 2.50,
+    2.40, 2.30, 2.20, 2.10, 2.00,
+    1.90, 1.80, 1.75, 1.66, 1.50,
+    1.40, 1.33, 1.25, 1.20, 1.15,
+    1.10, 0.05,
 };
+
+// Original Scaling
+// {
+//     3.00, 2.75, 2.50, 2.33, 2.25,
+//     2.00, 1.80, 1.70, 1.60, 1.50,
+//     1.40, 1.30, 1.20, 1.10, 1.00,
+//     0.90, 0.80, 0.75, 0.66, 0.50,
+//     0.40, 0.33, 0.25, 0.20, 0.15,
+//     0.10, 0.05,
+// };
 
 void (* const gBattleScriptingCommandsTable[])(void) =
 {
@@ -4167,7 +4177,7 @@ bool32 DoesMonShareType(u8 expGetterMonId)
 	
     // Retrieve the species of the getter pokemon so that we can use it to determine type
     getterSpecies = GetMonData(&gPlayerParty[expGetterMonId], MON_DATA_SPECIES, NULL);
-    DebugPrintfLevel(MGBA_LOG_WARN, "Checking types for: %S", GetSpeciesName(getterSpecies)); // Z testing
+    //DebugPrintfLevel(MGBA_LOG_WARN, "Checking types for: %S", GetSpeciesName(getterSpecies)); // Z testing
 	
 	// Use the receiving mon's species to get their types and store them for comparison.
     getterTypeOne = gSpeciesInfo[getterSpecies].types[0];
@@ -15912,16 +15922,16 @@ u8 GetFirstFaintedPartyIndex(u8 battler)
 
 void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBattler)
 {
-    DebugPrintfLevel(MGBA_LOG_WARN, "Applying experience modifiers...");  // Z testing
+    //DebugPrintfLevel(MGBA_LOG_WARN, "Applying experience modifiers...");  // Z testing
     // DebugPrintfLevel(MGBA_LOG_WARN, "ExpGetterMon ID: %s", expGetterMonId); // Z testing
     
-    u16 currSpecies;
-    currSpecies = GetMonData(&gPlayerParty[expGetterMonId], MON_DATA_SPECIES, NULL);
+    //u16 currSpecies;
+    //currSpecies = GetMonData(&gPlayerParty[expGetterMonId], MON_DATA_SPECIES, NULL);
+    //DebugPrintfLevel(MGBA_LOG_WARN, "ExpGetterMon Species: %S", GetSpeciesName(currSpecies));
+    //DebugPrintfLevel(MGBA_LOG_WARN, "Z: Getter-mon type 1 %S", gTypeNames[gSpeciesInfo[currSpecies].types[0]]);
+    //DebugPrintfLevel(MGBA_LOG_WARN, "Z: Getter-mon type 2 %S", gTypeNames[gSpeciesInfo[currSpecies].types[1]]);
+    
     bool32 monWasSentOut = ((gBattleStruct->expSentInMons & gBitTable[expGetterMonId]) != 0); // used to make sure we give XP to mons that were sent out regardless of shared typing
-    DebugPrintfLevel(MGBA_LOG_WARN, "ExpGetterMon Species: %S", GetSpeciesName(currSpecies));
-    DebugPrintfLevel(MGBA_LOG_WARN, "Z: Getter-mon type 1 %S", gTypeNames[gSpeciesInfo[currSpecies].types[0]]);
-    DebugPrintfLevel(MGBA_LOG_WARN, "Z: Getter-mon type 2 %S", gTypeNames[gSpeciesInfo[currSpecies].types[1]]);
-
     u32 holdEffect = GetMonHoldEffect(&gPlayerParty[expGetterMonId]);
     double expMultiplier; // + For Capped XP mechanic
 
@@ -15930,10 +15940,10 @@ void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBat
     if(!DoesMonShareType(expGetterMonId) && !monWasSentOut)
     {
         expMultiplier = 0;
-        DebugPrintfLevel(MGBA_LOG_WARN, "|| FALSE: Mon does not share type setting multiplier to 0...");
+        //DebugPrintfLevel(MGBA_LOG_WARN, "|| FALSE: Mon does not share type setting multiplier to 0...");
     }
     else
-    {
+    {   
         expMultiplier = GetPkmnExpMultiplier(gPlayerParty[gBattleStruct->expGetterMonId].level);
     }
 
@@ -15961,7 +15971,7 @@ void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBat
         *expAmount = (value + 1) * expMultiplier; // + For Capped XP mechanic
     }
     
-    DebugPrintfLevel(MGBA_LOG_WARN, "gained EXP ammount is %d [MULTI = %f]", *expAmount, expMultiplier); // Z testing
+    //DebugPrintfLevel(MGBA_LOG_WARN, "gained EXP ammount is %d [MULTI = %f]", *expAmount, expMultiplier); // Z testing
 }
 
 void BS_ItemRestoreHP(void)
